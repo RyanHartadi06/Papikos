@@ -21,7 +21,8 @@ export default class App extends Component {
   //   Get Api Users
   getMovieData = async () => {
     try {
-      const response = await Axios.get(`http://www.omdbapi.com/?apikey=133decb5&s=dragon+ball`)
+      const response = await Axios.get(`http://papikos.wsjti.com/api/kos/data?lat=-6.2008406&long=106.7987143`)
+      console.log(response)
       this.setState({ isError: false, isLoading: false, data: response.data })
     } catch (error) {
       this.setState({ isLoading: false, isError: true })
@@ -33,14 +34,13 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
           <FlatList
-          horizontal
-            data={this.state.data.Search}
+            data={this.state.data.data}
             renderItem={({item}) => (
-              <TouchableOpacity key={item.imdbID} style={styles.itemlist}>
-                <Image source={{ uri: `${item.Poster}` }} style={styles.Image} />
+              <TouchableOpacity key={item.id} style={styles.itemlist}>
+                <Image source={{ uri: "http://papikos.wsjti.com/assets/images/upload/kos/"+`${item.link_media}` }} style={styles.Image} />
                 <View>
-                    <Text style={{fontWeight:"bold", alignSelf:"center"}}>{item.Title}</Text>
-                    <Text style={{alignSelf:"center"}}>{item.Type}</Text>
+                    <Text style={{fontWeight:"bold", marginBottom:8}}>{item.nama}</Text>
+                    <Text style={{alignSelf:"center"}}>Rp.{item.harga}</Text>
                 </View>
               </TouchableOpacity>
             )}
@@ -51,18 +51,20 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        marginTop:8,
-    },
+  container:{
+      marginTop:8,
+  },
   itemlist:{
     marginStart:10,
+    marginBottom:75,
+    marginVertical:31,
     borderRadius:8,
-    borderWidth:1
+    width: 124,
+    height: 180,
   },
   Image:{
-    width: 100,
-    height: 120,
-    margin:8,
-    resizeMode:"center",
+    width: 313,
+    height: 205,
+    borderRadius : 15,
   },
 })
