@@ -14,7 +14,7 @@ const Home = () => {
           <Text style={{color:'black' , fontWeight:'bold'}}>Ryan</Text>
 					<Text style={{color:'black'}}>Ryanhartadi999@gmail.com</Text>
 				</View>
-        <Image source={require('../images/notif.png')} style={{marginTop : 15 ,width:20 , height:20}} />
+        <Image source={require('../images/notif.png')} style={{marginTop : 10}} />
       </View>
       <Gap height={25}/>
     <View style={styles.header}>
