@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Gap from './Gap';
 
 export default class App extends Component {
   constructor(props) {
@@ -15,11 +16,11 @@ export default class App extends Component {
   
   // Mount User Method
   componentDidMount() {
-    this.getMovieData()
+    this.getKos()
   }
 
   //   Get Api Users
-  getMovieData = async () => {
+  getKos = async () => {
     try {
       const response = await Axios.get(`http://papikos.wsjti.com/api/kos/data?lat=-6.2008406&long=106.7987143`)
       console.log(response)
@@ -32,39 +33,47 @@ export default class App extends Component {
   render() {
     // If data finish load
     return (
-      <View style={styles.container}>
-          <FlatList
-            data={this.state.data.data}
-            renderItem={({item}) => (
-              <TouchableOpacity key={item.id} style={styles.itemlist}>
-                <Image source={{ uri: "http://papikos.wsjti.com/assets/images/upload/kos/"+`${item.link_media}` }} style={styles.Image} />
-                <View>
-                    <Text style={{fontWeight:"bold", marginBottom:8}}>{item.nama}</Text>
-                    <Text style={{alignSelf:"center"}}>Rp.{item.harga}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-            />
-      </View>
+      <View style={{flex:1}}>
+            <FlatList
+              data={this.state.data.data}
+              showsVerticalScrollIndicator={false}
+              renderItem={({item}) => (
+                <TouchableOpacity key={item.id} style={styles.itemlist}>
+                  <Image source={{ uri: "http://papikos.wsjti.com/assets/images/upload/kos/"+`${item.link_media}` }} style={styles.Image} />
+                  <View style={styles.wrapper}>
+                        <Text style={{fontWeight:"bold"}}>{item.nama}</Text>
+                      <View style={{flexDirection:'column'}}>
+                        <Text style={{fontWeight:"bold"}}>Rp.{item.harga}</Text>
+                        <Text style={{fontWeight:"bold"}}>Perbulan</Text>
+                      </View>
+                  </View>
+                  <View style={{flexDirection: 'column'}}>
+                     
+                      <View style={{flexDirection : 'row'}}>
+                        <Image source={require('../images/marker.png')} />
+                        <Gap width={15}/>
+                        <Text>Sumbersari , Jember</Text>
+                      </View>
+                  </View>
+                </TouchableOpacity>
+              )}
+              />
+        </View>
+     
     );
     }
 }
 
 const styles = StyleSheet.create({
-  container:{
-      marginTop:8,
-  },
+  wrapper: { flexDirection: 'row', justifyContent: 'space-between' ,  paddingVertical: 10  },
   itemlist:{
-    marginStart:10,
-    marginBottom:75,
-    marginVertical:31,
+    marginTop:31,
     borderRadius:8,
-    width: 124,
-    height: 180,
+    width: '92%',
+    height: 281,
+    marginBottom:30
   },
   Image:{
-    width: 313,
-    height: 205,
-    borderRadius : 15,
+    width: 313, height: 205, borderRadius: 8
   },
 })
