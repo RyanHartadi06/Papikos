@@ -7,7 +7,7 @@ export default class Login extends Component {
         return (
         <ScrollView>
             <View style={styles.container}>
-                <Text style={{textAlign:"center", marginTop:10, fontSize:25, fontWeight:"bold", color:"#3B3D3F"}}> Selamat Datang </Text>
+                <Text style={{textAlign:"center", fontSize:25, fontWeight:"bold", color:"#3B3D3F"}}> Selamat Datang </Text>
                 <Image style={{marginTop:20, alignSelf:"center"}} source={require('../images/focused_working.png')}/>
                 <View style={{flexDirection:"row"}}>
                     <Image style={{marginTop:20}} source={require('../images/Group_231.png')}/>
@@ -15,9 +15,9 @@ export default class Login extends Component {
                 </View>
                 <View style={{flexDirection:"row"}}>
                     <Image style={{marginTop:20}} source={require('../images/Group_232.png')}/>
-                    <TextInput style={styles.Input}/>
+                    <TextInput style={styles.Input} secureTextEntry={true}/>
                 </View>
-                <Text style={{textAlign:"center", marginTop:10, fontSize:13, color:"#1E58B6", alignSelf:"flex-end", marginEnd:30, marginTop:10}}> Lupa Password </Text>
+                <Text style={{textAlign:"center", marginTop:10, fontSize:13, color:"#1E58B6", alignSelf:"flex-end", marginEnd:30, marginTop:10}} onPress={() => this.props.navigation.navigate('LupaPass')}> Lupa Password </Text>
                 <TouchableOpacity style={styles.Buttonlogin} onPress={() => this.props.navigation.navigate('MainApp')}>
                     <Text style={{color:"#fff", fontSize:18}}>Masuk</Text>
                 </TouchableOpacity>
@@ -28,7 +28,7 @@ export default class Login extends Component {
                 </View>
                 <View style={{flexDirection:"row"}}>
                     <Text style={{color:"#A1A1A1", fontSize:15, marginTop:40}}>Tidak memiliki Akun?</Text>
-                    <Text style={{color:"#1E58B6", fontSize:15, marginTop:40, marginStart:8, marginBottom:20}}>Mendaftar</Text>
+                    <Text style={{color:"#1E58B6", fontSize:15, marginTop:40, marginStart:8, marginBottom:20}} onPress={() => this.props.navigation.navigate('Regis')}>Mendaftar</Text>
                 </View>
             </View>
             </ScrollView>

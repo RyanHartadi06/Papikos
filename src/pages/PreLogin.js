@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Image, TouchableOpacity, ScrollView, Button} from 'react-native'
+import { Text, StyleSheet, View, Image, TouchableOpacity, ScrollView, Button, widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native'
 
 export default class PreLogin extends Component {
     render() {
@@ -23,7 +23,7 @@ export default class PreLogin extends Component {
                     <Image style={{marginTop:20}} source={require('../images/Group_229.png')}/>
                     <Image style={{marginTop:20, marginStart:20}} source={require('../images/Group_230.png')}/>
                 </View>
-            </View>
+                </View>
         </ScrollView>
         )
     }
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:"center",
         alignContent:"center",
-        marginTop:12
+        marginTop:20,
     },
     Buttonlogin:{
         paddingTop:8,
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
         margin:8,
         borderRadius:16,
         backgroundColor:"#fff"
-    }
+    },
     
 })

@@ -9,6 +9,8 @@ import Whislist from './pages/Whislist'
 import PreLogin from './pages/PreLogin'
 import Login from './pages/Login'
 import Regis from './pages/Regis'
+import LupaPass from './pages/LupaPass'
+import UbahPass from './pages/UbahPass'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
@@ -30,9 +32,17 @@ const App = () => {
       <Stack.Navigator initialRouteName="PreLogin">
         <Stack.Screen name="PreLogin" component={PreLogin} options={{headerShown:false}}/>
         <Stack.Screen name="Login" component={Login} options={{headerTitle:null, headerStyle: {
-            backgroundColor: 'red',
+            backgroundColor: '#F2F2F2',
+            elevation:0,
           },headerTintColor: '#1E58B6',}}/>
-        <Stack.Screen name="Regis" component={Regis} options={{headerTitle:null}}/>
+        <Stack.Screen name="Regis" component={Regis} options={{headerTitle:null, headerStyle: {
+            backgroundColor: '#F2F2F2',
+            elevation:0,
+          },headerTintColor: '#1E58B6',}}/>
+        <Stack.Screen name="LupaPass" component={UbahPass} options={{headerTitle:null, headerStyle: {
+            backgroundColor: '#F2F2F2',
+            elevation:0,
+          },headerTintColor: '#1E58B6',}}/>
         <Stack.Screen name="MainApp" component={MainApp} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
