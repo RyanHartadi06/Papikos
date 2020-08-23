@@ -19,7 +19,7 @@ export default class PreLogin extends Component {
                     </TouchableOpacity>
                 </View>
                 <Text style={{color:"#A1A1A1", fontSize:18, marginTop:40}}>Atau Melalui</Text>
-                <View style={{flexDirection:"row"}}>
+                <View style={{flexDirection:"row", marginBottom:20}}>
                     <Image style={{marginTop:20}} source={require('../images/Group_229.png')}/>
                     <Image style={{marginTop:20, marginStart:20}} source={require('../images/Group_230.png')}/>
                 </View>

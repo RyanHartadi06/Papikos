@@ -11,6 +11,9 @@ import Login from './pages/Login'
 import Regis from './pages/Regis'
 import LupaPass from './pages/LupaPass'
 import UbahPass from './pages/UbahPass'
+import Intro from './pages/Intro'
+import Intro2 from './pages/Intro2'
+import Intro3 from './pages/Intro3'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
