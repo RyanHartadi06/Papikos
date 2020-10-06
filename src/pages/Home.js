@@ -13,7 +13,7 @@ import ListTerbaru from '../components/ListTerbaru';
 import ListRekomended from '../components/ListRekomended';
 import {getData} from '../config';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const [data, setData] = useState([]);
   const [pesan, setPesan] = useState([]);
   const [namaprofile, setNamaprofile] = useState('');
@@ -25,7 +25,6 @@ const Home = () => {
   }, []);
   const getDataDashboard = () => {
     Axios.get('http://papikos.wsjti.com/api/dashboard/data').then((res) => {
-      // console.log(res.data.rekomended);
       setData(res.data.terbaru);
     });
   };
@@ -35,11 +34,6 @@ const Home = () => {
     });
   };
   const getUserData = () => {
-    // getData('user').then((res) => {
-    //   const data = res;
-    //   data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
-    //   setProfile(res);
-    // });
     getData('users').then((res) => {
       console.log('dari async' + res);
       setNamaprofile(res.nama);
@@ -135,7 +129,7 @@ const Home = () => {
                   harga={kos.harga}
                   key={i}
                   onPress={() => {
-                    console.log(i);
+                    navigation.navigate('Detail', kos);
                   }}
                   img={{
                     uri:
@@ -171,6 +165,9 @@ const Home = () => {
                   nama={pesanan.nama}
                   harga={pesanan.harga}
                   key={index}
+                  onPress={() => {
+                    navigation.navigate('Detail', pesanan);
+                  }}
                   img={{
                     uri:
                       'http://papikos.wsjti.com/assets/images/upload/kos/' +

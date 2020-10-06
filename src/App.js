@@ -16,6 +16,7 @@ import Intro2 from './pages/Intro2';
 import Intro3 from './pages/Intro3';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Splash from './pages/Splash';
+import DetailKos from './pages/DetailKos';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -90,6 +91,11 @@ const App = () => {
         <Stack.Screen
           name="MainApp"
           component={MainApp}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DetailKos}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

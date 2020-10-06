@@ -9,10 +9,10 @@ import {
   View,
 } from 'react-native';
 
-const ListRekomended = ({img, nama, harga}) => {
+const ListRekomended = ({img, nama, harga, onPress}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.itemlist}>
+      <TouchableOpacity style={styles.itemlist} onPress={onPress}>
         <Image source={img} style={styles.Image} />
         <View>
           <Text

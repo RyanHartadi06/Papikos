@@ -72,9 +72,14 @@ const Login = ({navigation}) => {
           style={{marginTop: 20, alignSelf: 'center'}}
           source={require('../images/focused_working.png')}
         />
-        <View style={{flexDirection: 'row'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginRight: 20,
+            paddingHorizontal: 20,
+          }}>
           <Image
-            style={{marginTop: 20}}
+            style={{marginTop: 20, marginRight: 12}}
             source={require('../images/Group_231.png')}
           />
           <TextInput
@@ -83,9 +88,9 @@ const Login = ({navigation}) => {
             onChangeText={(value) => setEmail(value)}
           />
         </View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row', marginRight: 20}}>
           <Image
-            style={{marginTop: 20}}
+            style={{marginTop: 20, marginRight: 12}}
             source={require('../images/Group_232.png')}
           />
           <TextInput
@@ -167,8 +172,9 @@ const styles = StyleSheet.create({
   },
   Input: {
     alignSelf: 'center',
-    width: 300,
+    width: 250,
     borderColor: '#1E58B6',
     borderBottomWidth: 1,
+    paddingHorizontal: 8,
   },
 });
