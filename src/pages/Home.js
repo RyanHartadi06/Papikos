@@ -11,17 +11,21 @@ import Gap from '../components/Gap';
 import Axios from 'axios';
 import ListTerbaru from '../components/ListTerbaru';
 import ListRekomended from '../components/ListRekomended';
+import {getData} from '../config';
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [pesan, setPesan] = useState([]);
+  const [namaprofile, setNamaprofile] = useState('');
+  const [email, setEmail] = useState('');
   useEffect(() => {
-    getData();
+    getDataDashboard();
     upData();
+    getUserData();
   }, []);
-  const getData = () => {
+  const getDataDashboard = () => {
     Axios.get('http://papikos.wsjti.com/api/dashboard/data').then((res) => {
-      console.log(res.data.rekomended);
+      // console.log(res.data.rekomended);
       setData(res.data.terbaru);
     });
   };
@@ -30,7 +34,18 @@ const Home = () => {
       setPesan(res.data.rekomended);
     });
   };
-
+  const getUserData = () => {
+    // getData('user').then((res) => {
+    //   const data = res;
+    //   data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
+    //   setProfile(res);
+    // });
+    getData('users').then((res) => {
+      console.log('dari async' + res);
+      setNamaprofile(res.nama);
+      setEmail(res.email);
+    });
+  };
   return (
     <ScrollView>
       <View
@@ -43,8 +58,10 @@ const Home = () => {
         }}>
         <View style={{flexDirection: 'row'}}>
           <View style={{flex: 1}}>
-            <Text style={{color: 'black', fontWeight: 'bold'}}>Ryan</Text>
-            <Text style={{color: 'black'}}>Ryanhartadi999@gmail.com</Text>
+            <Text style={{color: 'black', fontWeight: 'bold'}}>
+              {namaprofile}
+            </Text>
+            <Text style={{color: 'black'}}>{email}</Text>
           </View>
           <Image
             source={require('../images/notif.png')}
@@ -54,7 +71,7 @@ const Home = () => {
         <Gap height={25} />
         <View style={styles.header}>
           <View style={styles.flex}>
-            <Text style={styles.name}>Selamat Datang , Ryan</Text>
+            <Text style={styles.name}>Selamat Datang , {namaprofile}</Text>
             <Text style={styles.desc}>
               Temukan Kos yang sesuai kebutuhan anda di aplikasi PapiKos
             </Text>

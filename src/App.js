@@ -15,6 +15,7 @@ import Intro from './pages/Intro';
 import Intro2 from './pages/Intro2';
 import Intro3 from './pages/Intro3';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Splash from './pages/Splash';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,7 +33,7 @@ const MainApp = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="MainApp">
+      <Stack.Navigator initialRouteName="Splash">
         <Stack.Screen
           name="PreLogin"
           component={PreLogin}
@@ -65,6 +66,18 @@ const App = () => {
         <Stack.Screen
           name="LupaPass"
           component={UbahPass}
+          options={{
+            headerTitle: null,
+            headerStyle: {
+              backgroundColor: '#F2F2F2',
+              elevation: 0,
+            },
+            headerTintColor: '#1E58B6',
+          }}
+        />
+        <Stack.Screen
+          name="Splash"
+          component={Splash}
           options={{
             headerTitle: null,
             headerStyle: {

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import Axios from 'axios';
+import {storeData} from '../config';
 const Login = ({navigation}) => {
   const formData = new FormData();
   const [email, setEmail] = useState('');
@@ -21,13 +22,15 @@ const Login = ({navigation}) => {
     formData.append('password', password);
     Axios.post('http://papikos.wsjti.com/api/Auth/sign_in', formData)
       .then((result) => {
-        console.log('result data', result.data);
+        console.log('result data', result.data.data);
         console.log('senddata', formData);
         // console.log('result', result);
         if (result.data.status == true) {
           navigation.navigate('MainApp');
-          setEmail('');
-          setPassword('');
+          storeData('users', result.data.data);
+          // setEmail('');
+          // setPassword('');
+          console.log('Sukses');
         } else {
           console.log('gagal');
         }
