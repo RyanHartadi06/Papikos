@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  Alert,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import Axios from 'axios';
@@ -24,12 +23,9 @@ const Login = ({navigation}) => {
       .then((result) => {
         console.log('result data', result.data.data);
         console.log('senddata', formData);
-        // console.log('result', result);
         if (result.data.status == true) {
           navigation.navigate('MainApp');
           storeData('users', result.data.data);
-          // setEmail('');
-          // setPassword('');
           console.log('Sukses');
         } else {
           console.log('gagal');
@@ -37,24 +33,6 @@ const Login = ({navigation}) => {
       })
       .catch((err) => console.log('err', err));
   };
-  //   const postData = () => {
-  //     const data = {
-  //       emailnya,
-  //       passwordnya,
-  //     };
-  //     fetch('http://modalin.evoindo.com/api/auth/authlogin', {
-  //       method: 'POST',
-  //       body: JSON.stringify(data),
-  //       headers: {
-  //         'Content-type': 'application/json; charset=UTF-8',
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .catch((error) => console.log(error))
-  //       .then((json) => {
-  //         console.log('Data masuk:' + json);
-  //       });
-  //   };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -115,7 +93,16 @@ const Login = ({navigation}) => {
           Lupa Password{' '}
         </Text>
         <TouchableOpacity style={styles.Buttonlogin} onPress={submit}>
-          <Text style={{color: '#fff', fontSize: 18}}>Masuk</Text>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 18,
+              flex: 1,
+              textAlign: 'center',
+              textAlignVertical: 'center',
+            }}>
+            Masuk
+          </Text>
         </TouchableOpacity>
         <Text style={{color: '#1E58B6', fontSize: 15, marginTop: 40}}>
           Masuk Melalui
@@ -142,7 +129,7 @@ const Login = ({navigation}) => {
               marginStart: 8,
               marginBottom: 20,
             }}
-            onPress={() => this.props.navigation.navigate('Regis')}>
+            onPress={() => navigation.navigate('Regis')}>
             Mendaftar
           </Text>
         </View>
@@ -161,12 +148,10 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   Buttonlogin: {
-    paddingTop: 12,
-    paddingBottom: 12,
-    paddingStart: 50,
-    paddingEnd: 50,
-    marginTop: 30,
     borderRadius: 16,
+    marginTop: 30,
+    width: 160,
+    height: 41,
     alignSelf: 'center',
     backgroundColor: '#1E58B6',
   },

@@ -10,6 +10,7 @@ const Splash = ({navigation}) => {
       setTimeout(() => {
         if (dataku) {
           navigation.replace('MainApp');
+          // navigation.replace('PreLogin');
         } else {
           navigation.replace('PreLogin');
         }

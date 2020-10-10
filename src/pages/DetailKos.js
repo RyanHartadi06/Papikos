@@ -1,22 +1,41 @@
 import React, {useState} from 'react';
 import {useEffect} from 'react';
-import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {Image, StyleSheet, Text, View, ScrollView, Button} from 'react-native';
 import Gap from '../components/Gap';
 import Axios from 'axios';
+import Tipe from '../components/Tipe';
+import FasilitasSub from '../components/FasilitasSub';
 const DetailKos = ({route}) => {
   const data = route.params;
   const [detail, setDetail] = useState({});
+  const [tipe, setTipe] = useState([]);
+  const [fasilitas, setFasilitas] = useState([]);
   const getData = () => {
     Axios.get(`http://papikos.wsjti.com/api/kos/detail/${data.id}`).then(
       (res) => {
-        console.log('result getData', res.data.data);
         setDetail(res.data.data);
+      },
+    );
+  };
+  const getTipeKos = () => {
+    Axios.get(`http://papikos.wsjti.com/api/kos/detail/${data.id}`).then(
+      (res) => {
+        setTipe(res.data.data.dk);
+      },
+    );
+  };
+  const getFasilitas = () => {
+    Axios.get(`http://papikos.wsjti.com/api/kos/detail/${data.id}`).then(
+      (res) => {
+        setFasilitas(res.data.data.subfas);
       },
     );
   };
   useEffect(() => {
     getData();
-  });
+    getTipeKos();
+    getFasilitas();
+  }, []);
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -40,13 +59,9 @@ const DetailKos = ({route}) => {
         <Text style={style.title}>Tipe Kos</Text>
         <Gap height={20} />
         <View style={style.type}>
-          <View style={style.isitipe}>
-            <Text style={style.angka}>20</Text>
-          </View>
-          <Gap width={20} />
-          <View style={style.isitipe}>
-            <Text style={style.angka}>30</Text>
-          </View>
+          {tipe.map((tipenya, index) => {
+            return <Tipe angkanya={tipenya.type} key={index} />;
+          })}
         </View>
         <Gap height={20} />
         <Text style={style.title}>Details</Text>
@@ -74,15 +89,30 @@ const DetailKos = ({route}) => {
         <Text>{detail.deskripsi}</Text>
         <Text style={style.title}>Pemilik</Text>
         <View style={style.kategori}>
-          <Text style={style.text}>Jumlah Kamar</Text>
+          <Text style={style.text}>Nama Pemilik</Text>
           <Gap width={50} />
-          <Text style={style.text}>{detail.jumlah_kamar}</Text>
+          <Text style={style.text}>{detail.nama}</Text>
         </View>
         <View style={style.kategori}>
-          <Text style={style.text}>Kategori</Text>
+          <Text style={style.text}>Email</Text>
           <Gap width={50} />
-          <Text style={style.text}>{detail.kategori}</Text>
+          <Text style={style.text}>{detail.email}</Text>
         </View>
+        <View style={style.kategori}>
+          <Text style={style.text}>Nomor Hp</Text>
+          <Gap width={50} />
+          <Text style={style.text}>{detail.no_hp}</Text>
+        </View>
+        <Gap height={20} />
+        <Text style={style.title}>Fasilitas</Text>
+        <View style={style.type}>
+          {fasilitas.map((fas, index) => {
+            return <FasilitasSub fas={fas.nama} key={index} />;
+          })}
+        </View>
+      </View>
+      <View style={style.btn}>
+        <Text style={style.txt}>Pesan Sekarang</Text>
       </View>
     </ScrollView>
   );
@@ -92,6 +122,20 @@ export default DetailKos;
 const style = StyleSheet.create({
   container: {padding: 25, flex: 1, backgroundColor: 'white'},
   img: {width: 350, height: 220},
+  txt: {
+    color: 'white',
+    flex: 1,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 15,
+  },
+  btn: {
+    borderRadius: 20,
+    width: 315,
+    height: 41,
+    backgroundColor: '#1E58B6',
+    alignSelf: 'center',
+  },
   row: {
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -121,7 +165,8 @@ const style = StyleSheet.create({
   },
   type: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
+    marginVertical: 10,
   },
   title: {
     fontWeight: 'bold',
