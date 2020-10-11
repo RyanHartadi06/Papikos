@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
 import {useEffect} from 'react';
-import {Image, StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import Gap from '../components/Gap';
 import Axios from 'axios';
 import Tipe from '../components/Tipe';
@@ -14,27 +21,14 @@ const DetailKos = ({route}) => {
     Axios.get(`http://papikos.wsjti.com/api/kos/detail/${data.id}`).then(
       (res) => {
         setDetail(res.data.data);
-      },
-    );
-  };
-  const getTipeKos = () => {
-    Axios.get(`http://papikos.wsjti.com/api/kos/detail/${data.id}`).then(
-      (res) => {
         setTipe(res.data.data.dk);
-      },
-    );
-  };
-  const getFasilitas = () => {
-    Axios.get(`http://papikos.wsjti.com/api/kos/detail/${data.id}`).then(
-      (res) => {
         setFasilitas(res.data.data.subfas);
       },
     );
   };
+
   useEffect(() => {
     getData();
-    getTipeKos();
-    getFasilitas();
   }, []);
   return (
     <ScrollView
@@ -110,10 +104,16 @@ const DetailKos = ({route}) => {
             return <FasilitasSub fas={fas.nama} key={index} />;
           })}
         </View>
+        <Text style={style.title}>Rated</Text>
+        <Text>{detail.rate} / 5</Text>
       </View>
-      <View style={style.btn}>
+      <TouchableOpacity
+        style={style.btn}
+        onPress={() => {
+          console.log('data');
+        }}>
         <Text style={style.txt}>Pesan Sekarang</Text>
-      </View>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -135,13 +135,16 @@ const style = StyleSheet.create({
     height: 41,
     backgroundColor: '#1E58B6',
     alignSelf: 'center',
+    marginBottom: 50,
   },
   row: {
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
   text: {
+    marginTop: 10,
     flex: 1,
+    fontSize: 15,
   },
   kategori: {
     flex: 1,
@@ -165,7 +168,6 @@ const style = StyleSheet.create({
   },
   type: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
     marginVertical: 10,
   },
   title: {

@@ -18,6 +18,7 @@ const style = StyleSheet.create({
     borderRadius: 10,
     width: 40,
     height: 40,
+    marginHorizontal: 10,
   },
   angka: {
     fontSize: 20,

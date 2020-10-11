@@ -49,6 +49,7 @@ const Home = ({navigation}) => {
           paddingLeft: 18,
           paddingRight: 18,
           paddingTop: 15,
+          backgroundColor: 'white',
         }}>
         <View style={{flexDirection: 'row'}}>
           <View style={{flex: 1}}>
