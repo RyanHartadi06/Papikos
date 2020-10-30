@@ -1,7 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import Gap from '../components/Gap';
-import {WebView} from 'react-native-webview';
 const Account = () => {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
@@ -9,7 +8,6 @@ const Account = () => {
         <Image style={style.img} source={require('../images/Image.png')} />
         <Gap height={20} />
         <Text style={style.txt}>Hello , Ryan</Text>
-        {/* <WebView source={{uri: 'https://reactnative.dev/'}} /> */}
       </View>
 
       {/* <Text>sad</Text> */}
